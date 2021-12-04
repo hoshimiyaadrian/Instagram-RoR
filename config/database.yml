@@ -1,0 +1,42 @@
+default: &default
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: db/development_instagram.sqlite3
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: db/test_instagram.sqlite3
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: production_instagram
+  pool: 5
+  host: localhost
+  username: hoshimiya
+  password: 123qwe
+
+#   default: &default
+#   adapter:  postgresql
+#   encoding: utf8
+#   port:     <%= ENV.fetch("POSTGRESQL_PORT", "5432") %>
+#   pool:     <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   username: <%= ENV['hoshimiya'] %>
+#   password: <%= ENV.fetch("POSTGRESQL_PASSWORD", "123qwe") %>
+#   host:     <%= ENV['hoshimiya'] %>
+
+# development:
+#   <<: *default
+#   database: <%= ENV['POSTGRESQL_DB'] %>-development
+#   host: hoshimiya
+
+# production:
+#   <<: *default
+#   database: <%= ENV['POSTGRESQL_DB'] %>
